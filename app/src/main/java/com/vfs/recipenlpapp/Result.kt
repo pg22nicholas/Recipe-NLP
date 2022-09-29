@@ -35,7 +35,7 @@ class Result(
   }
 
   init {
-    title = title
+    this.title = title
     this.confidence = confidence
   }
 }
