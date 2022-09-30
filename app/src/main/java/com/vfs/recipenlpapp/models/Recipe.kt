@@ -4,7 +4,7 @@ import android.content.Context
 import com.vfs.recipenlpapp.Result
 import com.vfs.recipenlpapp.TextClassificationClient
 
-class Recipe(var link : String, var ingredientList : MutableList<Ingredient> = mutableListOf()) {
+class Recipe(var title : String, var link : String, var ingredientList : MutableList<Ingredient> = mutableListOf()) {
 
     lateinit var resultList : List<Result>
 

@@ -31,6 +31,7 @@
             android:gravity="end">
 
             <FrameLayout
+                android:id="@+id/recipe_link_accessor"
                 android:layout_width="75dp"
                 android:layout_height="match_parent"
                 android:background="@color/black"/>
