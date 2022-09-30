@@ -40,14 +40,15 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/recipe_categories_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recipe_categories"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="30dp"
         android:gravity="center_vertical">
 
 
-    </FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 

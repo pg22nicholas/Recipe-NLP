@@ -6,7 +6,7 @@ import com.vfs.recipenlpapp.TextClassificationClient
 
 class Recipe(var title : String, var link : String, var ingredientList : MutableList<Ingredient> = mutableListOf()) {
 
-    lateinit var resultList : List<Result>
+    var resultList : MutableList<Result> = mutableListOf()
 
     fun AddIngredient(IngredientToAdd : Ingredient) {
         ingredientList.add(IngredientToAdd)
@@ -17,7 +17,7 @@ class Recipe(var title : String, var link : String, var ingredientList : Mutable
         model = TextClassificationClient(context)
         model.load()
         val checkString = ConvertIngredientsToTextClassificationInput()
-        resultList = model.classify(checkString)
+        resultList = model.classify(checkString) as MutableList<Result>
     }
 
     fun ConvertIngredientsToTextClassificationInput() : String {
