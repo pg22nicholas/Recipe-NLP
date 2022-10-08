@@ -2,17 +2,17 @@ package com.vfs.recipenlpapp
 
 import android.content.Context
 import android.util.Log
-import org.tensorflow.lite.task.text.nlclassifier.NLClassifier
+import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier
 import java.io.IOException
 import java.util.*
 
 
 /** Load TfLite model and provide predictions with task api.  */
 class TextClassificationClient(private val context: Context) {
-    var classifier: NLClassifier? = null
+    var classifier: BertNLClassifier? = null
     fun load() {
         try {
-            classifier = NLClassifier.createFromFile(context, MODEL_PATH)
+            classifier = BertNLClassifier.createFromFile(context, MODEL_PATH)
         } catch (e: IOException) {
             Log.e(TAG, e.message!!)
         }
@@ -36,6 +36,6 @@ class TextClassificationClient(private val context: Context) {
 
     companion object {
         private const val TAG = "TaskApi"
-        private const val MODEL_PATH = "healthy.tflite"
+        private const val MODEL_PATH = "FoodTimeModel.tflite"
     }
 }
