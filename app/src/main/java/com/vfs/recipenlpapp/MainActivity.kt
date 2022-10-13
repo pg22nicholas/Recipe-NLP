@@ -1,5 +1,6 @@
 package com.vfs.recipenlpapp
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
@@ -11,6 +12,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.vfs.recipenlpapp.Listeners.RecipeClickListener
 import com.vfs.recipenlpapp.models.Data
+import com.vfs.recipenlpapp.models.Ingredient
+import com.vfs.recipenlpapp.models.Recipe
 import com.vfs.recipenlpapp.recipelist.RecipeAdapter
 
 class MainActivity : AppCompatActivity(), RecipeClickListener {
@@ -26,15 +29,16 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         Data.initiateData(application)
 
         findViewById<Button>(R.id.Check_Button).setOnClickListener {
-            val checkString = findViewById<EditText>(R.id.SentenceCheck_EditText)
-            val result: List<Result> = model.classify(checkString.text.toString())
-            Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_LONG).show()
+//            val checkString = findViewById<EditText>(R.id.SentenceCheck_EditText)
+//            val result: List<Result> = model.classify(checkString.text.toString())
+//            Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_LONG).show()
+            Data.AddRecipe(Recipe("recipe", "www.google.com", mutableListOf(Ingredient("sugar"))), this.applicationContext)
         }
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        model = TextClassificationClient(context)
-        model.load()
+//        model = TextClassificationClient(context)
+//        model.load("FoodTimeModel.tflite")
 
         return super.onCreateView(name, context, attrs)
     }

@@ -41,10 +41,10 @@ class RecipeCategoryAdapter(var recipe : Recipe) : RecyclerView.Adapter<RecipeCa
 
     override fun onBindViewHolder(holder: RecipeCategoryViewHolder, position: Int) {
 
-        holder.bindRecipeCategory(recipe.resultList[position].title)
+        holder.bindRecipeCategory(recipe.categoryList[position].title)
     }
 
     override fun getItemCount(): Int {
-        return recipe.resultList.count()
+        return recipe.categoryList.count()
     }
 }

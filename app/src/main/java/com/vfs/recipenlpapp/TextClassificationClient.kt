@@ -10,9 +10,9 @@ import java.util.*
 /** Load TfLite model and provide predictions with task api.  */
 class TextClassificationClient(private val context: Context) {
     var classifier: BertNLClassifier? = null
-    fun load() {
+    fun load(modelName : String) {
         try {
-            classifier = BertNLClassifier.createFromFile(context, MODEL_PATH)
+            classifier = BertNLClassifier.createFromFile(context, modelName)
         } catch (e: IOException) {
             Log.e(TAG, e.message!!)
         }
