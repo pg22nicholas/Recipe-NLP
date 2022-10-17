@@ -2,5 +2,5 @@ package com.vfs.recipenlpapp.Listeners
 
 interface RecipeClickListener {
 
-    fun OnGotoLinkClicked(link : String)
+    fun OnGotoLinkClicked(recipeIndex : Int)
 }

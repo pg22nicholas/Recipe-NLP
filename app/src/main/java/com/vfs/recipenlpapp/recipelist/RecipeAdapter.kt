@@ -57,7 +57,7 @@ class RecipeAdapter(val listener : RecipeClickListener) : RecyclerView.Adapter<R
         holder.recipeCategoryList?.adapter = RecipeCategoryAdapter(recipe)
 
         holder.recipeLinkAccessor?.setOnClickListener {
-            listener.OnGotoLinkClicked(Data.recipeList[holder.adapterPosition].link)
+            listener.OnGotoLinkClicked(holder.adapterPosition)
         }
         holder.bindRecipe(recipe)
     }
