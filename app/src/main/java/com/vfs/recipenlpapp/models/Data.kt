@@ -16,13 +16,13 @@ class Data {
             this.application = application
 
             val ingredients1 : MutableList<Ingredient> = mutableListOf(Ingredient("Sugar"), Ingredient("flour"), Ingredient("Baking Soda"))
-            recipeList.add(Recipe("test1", "www.google.com", ingredients1))
+            AddRecipe(Recipe("test1", "www.google.com", ingredients1))
             val ingredients2 : MutableList<Ingredient> = mutableListOf(Ingredient("eggs"), Ingredient("bread"), Ingredient("avacado"))
-            recipeList.add(Recipe("test2", "www.google.com", ingredients2))
+            AddRecipe(Recipe("test2", "www.google.com", ingredients2))
         }
 
-        fun AddRecipe(recipe: Recipe, context : Context) {
-            recipe.RunTextClassification(context)
+        fun AddRecipe(recipe: Recipe) {
+            recipe.RunTextClassification(application)
             recipeList.add(recipe);
         }
     }

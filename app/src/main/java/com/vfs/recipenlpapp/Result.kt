@@ -3,17 +3,16 @@ package com.vfs.recipenlpapp
 
 /** An immutable result returned by a TextClassifier describing what was classified.  */
 class Result(
-  /**
-   * A unique identifier for what has been classified. Specific to the class, not the instance of
-   * the object.
-   */
+
+  //  A unique identifier for what has been classified. Specific to the class
   val id: String?,
-  /** Display name for the result.  */
+
+  // Display name for the result.
   var title: String?, confidence: Float?
 ) :
   Comparable<Result?> {
 
-  /** A sortable score for how good the result is relative to others. Higher should be better.  */
+  // A sortable score for how good the result is relative to others. Higher should be better.
   val confidence: Float?
 
   override fun toString(): String {

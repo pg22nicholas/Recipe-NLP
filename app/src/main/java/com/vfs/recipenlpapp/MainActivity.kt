@@ -29,16 +29,17 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         Data.initiateData(application)
 
         findViewById<Button>(R.id.Check_Button).setOnClickListener {
-//            val checkString = findViewById<EditText>(R.id.SentenceCheck_EditText)
-//            val result: List<Result> = model.classify(checkString.text.toString())
-//            Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_LONG).show()
-            Data.AddRecipe(Recipe("recipe", "www.google.com", mutableListOf(Ingredient("sugar"))), this.applicationContext)
+            val checkString = findViewById<EditText>(R.id.SentenceCheck_EditText)
+            val result: List<Result> = model.classify(checkString.text.toString())
+            Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_LONG).show()
+            Data.AddRecipe(Recipe("Test Recipe", "www.google.com", mutableListOf(Ingredient("sugar"))))
+            recipeAdapter.notifyDataSetChanged()
         }
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-//        model = TextClassificationClient(context)
-//        model.load("FoodTimeModel.tflite")
+        model = TextClassificationClient(context)
+        model.load("FoodTimeModel.tflite")
 
         return super.onCreateView(name, context, attrs)
     }
