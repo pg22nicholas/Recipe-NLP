@@ -1,21 +1,26 @@
 package com.vfs.recipenlpapp.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import com.vfs.recipenlpapp.R
 import com.vfs.recipenlpapp.models.Data
 import com.vfs.recipenlpapp.models.Recipe
+
 
 private const val ARG_RECIPE_INDEX = "recipeIndexParam"
 
 class StoredRecipeWebViewFragment : Fragment() {
 
     private var recipeIndex: Int? = null
-    private lateinit var recipe : Recipe;
+    private lateinit var recipe : Recipe
+
+    lateinit var javascriptInterface : MyJavaScriptInterface;
 
     private lateinit var webView : WebView
 
@@ -37,9 +42,19 @@ class StoredRecipeWebViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        javascriptInterface = MyJavaScriptInterface();
         webView = view.findViewById(R.id.storedRecipeWebView)!!
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl(recipe.link)
+
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView, url: String) {
+                //webView.loadUrl(recipe.link)
+                webView.loadUrl("javascript:window.HTMLViewer.processHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+            }
+        }
+        webView.addJavascriptInterface(javascriptInterface, "HTMLViewer")
+        webView.loadUrl(recipe.link);
     }
 
     companion object {
@@ -50,5 +65,14 @@ class StoredRecipeWebViewFragment : Fragment() {
                     putInt(ARG_RECIPE_INDEX, recipeIndex)
                 }
             }
+    }
+}
+
+class MyJavaScriptInterface {
+    var html: String? = null
+    @JavascriptInterface
+    fun processHTML(html: String?) {
+        // process the html as needed by the app
+        var test = 0
     }
 }

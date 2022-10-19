@@ -16,9 +16,9 @@ class Data {
             this.application = application
 
             val ingredients1 : MutableList<Ingredient> = mutableListOf(Ingredient("Sugar"), Ingredient("flour"), Ingredient("Baking Soda"))
-            AddRecipe(Recipe("test1", "www.google.com", ingredients1))
+            AddRecipe(Recipe("test1", "https://www.allrecipes.com/recipe/8459990/rutabaga-beef-stew/", ingredients1))
             val ingredients2 : MutableList<Ingredient> = mutableListOf(Ingredient("eggs"), Ingredient("bread"), Ingredient("avacado"))
-            AddRecipe(Recipe("test2", "www.google.com", ingredients2))
+            AddRecipe(Recipe("test2", "https://www.allrecipes.com/recipe/8459990/rutabaga-beef-stew/", ingredients2))
         }
 
         fun AddRecipe(recipe: Recipe) {
