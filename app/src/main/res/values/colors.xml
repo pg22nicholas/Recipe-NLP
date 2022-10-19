@@ -8,6 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="recipe_default_border">#c7c7c9</color>
-    <color name="recipe_default_background">#c7c7c9</color>
+    <color name="recipe_default_border">#F8B7B7</color>
+    <color name="recipe_default_background">#F8B7B7</color>
 </resources>
