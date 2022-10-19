@@ -18,14 +18,12 @@ class RecipeViewHolder(rootLayout : LinearLayout) : RecyclerView.ViewHolder(root
 
     var recipeNameTextView : TextView? = null
     var recipeContainer : LinearLayout? = null
-    var recipeLinkAccessor : FrameLayout? = null;
     var recipeCategoryList : RecyclerView? = null;
 
 
     init {
         recipeNameTextView = itemView.findViewById(R.id.text_recipe_name)
         recipeContainer = itemView.findViewById(R.id.recipe_row_container)
-        recipeLinkAccessor = itemView.findViewById(R.id.recipe_link_accessor)
         recipeCategoryList = itemView.findViewById(R.id.rv_recipe_categories)
     }
 
@@ -56,7 +54,7 @@ class RecipeAdapter(val listener : RecipeClickListener) : RecyclerView.Adapter<R
         holder.recipeCategoryList?.layoutManager = flexboxLayoutManager
         holder.recipeCategoryList?.adapter = RecipeCategoryAdapter(recipe)
 
-        holder.recipeLinkAccessor?.setOnClickListener {
+        holder.recipeContainer?.setOnClickListener {
             listener.OnGotoLinkClicked(holder.adapterPosition)
         }
         holder.bindRecipe(recipe)
