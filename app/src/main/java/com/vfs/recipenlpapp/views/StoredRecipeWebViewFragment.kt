@@ -1,6 +1,7 @@
 package com.vfs.recipenlpapp.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,15 @@ import androidx.fragment.app.Fragment
 import com.vfs.recipenlpapp.R
 import com.vfs.recipenlpapp.models.Data
 import com.vfs.recipenlpapp.models.Recipe
+import it.skrape.core.htmlDocument
+import it.skrape.fetcher.HttpFetcher
+import it.skrape.fetcher.skrape
+import it.skrape.matchers.toBe
+import it.skrape.selects.CssSelector
+import it.skrape.selects.Doc
+import it.skrape.selects.DocElement
+import it.skrape.selects.attribute
+import it.skrape.selects.html5.span
 
 
 private const val ARG_RECIPE_INDEX = "recipeIndexParam"
@@ -69,10 +79,31 @@ class StoredRecipeWebViewFragment : Fragment() {
 }
 
 class MyJavaScriptInterface {
+
     var html: String? = null
+    //lateinit var ingredientsDoc: List<DocElement>;
+
     @JavascriptInterface
     fun processHTML(html: String?) {
-        // process the html as needed by the app
-        var test = 0
+        this.html = html
+
+        skrape(HttpFetcher) {
+
+        }
+
+        if (html != null) {
+            var test = htmlDocument(html) {
+                span {
+                    findAll {
+                        withAttribute = "data-ingredient-name" to "true"
+                    }
+                }
+            }
+
+              //Log.e("MyTag", test)
+//            for (DocEle in ingredientsDoc) {
+//                Log.e("MyTag", DocEle.html)
+//            }
+        }
     }
 }
