@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.vfs.recipenlpapp.R
 import com.vfs.recipenlpapp.models.Data
+import com.vfs.recipenlpapp.models.Ingredient
 import com.vfs.recipenlpapp.models.Recipe
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.HttpFetcher
@@ -21,11 +22,12 @@ import it.skrape.selects.Doc
 import it.skrape.selects.DocElement
 import it.skrape.selects.attribute
 import it.skrape.selects.html5.span
+import org.apache.commons.lang3.mutable.Mutable
 
 
 private const val ARG_RECIPE_INDEX = "recipeIndexParam"
 
-class StoredRecipeWebViewFragment : Fragment() {
+open class StoredRecipeWebViewFragment : Fragment() {
 
     private var recipeIndex: Int? = null
     private lateinit var recipe : Recipe
@@ -67,6 +69,16 @@ class StoredRecipeWebViewFragment : Fragment() {
         webView.loadUrl(recipe.link);
     }
 
+    fun getRecipeFromPage() : Recipe {
+        val ingredients1 : MutableList<Ingredient> = mutableListOf(Ingredient("Sugar"), Ingredient("flour"), Ingredient("Baking Soda"))
+        var recipe = Recipe(
+            "test1",
+            "https://www.allrecipes.com/recipe/8459990/rutabaga-beef-stew/",
+            ingredients1
+        )
+        return recipe
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(recipeIndex: Int) =
@@ -86,10 +98,6 @@ class MyJavaScriptInterface {
     @JavascriptInterface
     fun processHTML(html: String?) {
         this.html = html
-
-        skrape(HttpFetcher) {
-
-        }
 
         if (html != null) {
             var test = htmlDocument(html) {
