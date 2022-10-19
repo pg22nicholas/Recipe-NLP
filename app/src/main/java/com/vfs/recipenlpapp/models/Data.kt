@@ -25,5 +25,9 @@ class Data {
             recipe.RunTextClassification(application)
             recipeList.add(recipe);
         }
+
+        fun removeRecipe(index : Int) {
+            recipeList.removeAt(index)
+        }
     }
 }

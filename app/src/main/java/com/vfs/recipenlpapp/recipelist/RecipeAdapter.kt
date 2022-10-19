@@ -57,6 +57,12 @@ class RecipeAdapter(val listener : RecipeClickListener) : RecyclerView.Adapter<R
         holder.recipeContainer?.setOnClickListener {
             listener.OnGotoLinkClicked(holder.adapterPosition)
         }
+
+        holder.recipeContainer?.setOnLongClickListener {
+            listener.OnLongPressed(holder.adapterPosition)
+            true
+        }
+
         holder.bindRecipe(recipe)
     }
 

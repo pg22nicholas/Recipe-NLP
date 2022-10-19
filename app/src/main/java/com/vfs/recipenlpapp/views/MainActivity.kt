@@ -1,7 +1,9 @@
 package com.vfs.recipenlpapp.views
 
+import android.app.AlertDialog
 import android.app.Application
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
@@ -47,5 +49,21 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         val intent = Intent(applicationContext, StoredRecipeDetails::class.java)
         intent.putExtra("recipeIndex", recipeIndex)
         startActivity(intent)
+    }
+
+    override fun OnLongPressed(recipeIndex: Int) {
+        var recipe = Data.recipeList[recipeIndex]
+        AlertDialog.Builder(this)
+            .setMessage("Do you want to delete " + recipe.title + "?")
+            .setCancelable(true)
+            .setPositiveButton("Delete", DialogInterface.OnClickListener { dialogInterface, i ->
+                Data.removeRecipe(recipeIndex)
+                recipeAdapter.notifyDataSetChanged()
+            })
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialogInterface, i ->
+                dialogInterface.cancel()
+            })
+            .create()
+            .show()
     }
 }
