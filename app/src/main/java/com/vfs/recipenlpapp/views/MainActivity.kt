@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         setContentView(R.layout.activity_main)
 
         Data.initiateData(application)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "NLP Recipe App"
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
