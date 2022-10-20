@@ -10,4 +10,5 @@
 
     <color name="recipe_default_border">#F8B7B7</color>
     <color name="recipe_default_background">#F8B7B7</color>
+    <color name="background_default">#6A1A1A</color>
 </resources>

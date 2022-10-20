@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.vfs.recipenlpapp.Listeners.RecipeClickListener
 import com.vfs.recipenlpapp.R
 import com.vfs.recipenlpapp.TextClassificationClient
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
     lateinit var model : TextClassificationClient
     lateinit var recipeAdapter : RecipeAdapter
     lateinit var recipeRV : RecyclerView;
+    lateinit var AddRecipeFab : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +42,20 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         return super.onCreateView(name, context, attrs)
     }
 
+
     override fun onStart() {
         super.onStart()
 
         recipeAdapter = RecipeAdapter(this)
         recipeRV = findViewById(R.id.rv_recipe_list)
         recipeRV.adapter = recipeAdapter
+
+        findViewById<FloatingActionButton>(R.id.add_recipe_fab).setOnClickListener {
+            Snackbar.make(findViewById<View>(android.R.id.content).getRootView(), "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+
+        }
     }
 
     override fun OnGotoLinkClicked(recipeIndex : Int) {
