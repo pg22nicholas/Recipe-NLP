@@ -10,5 +10,21 @@
 
     <color name="recipe_default_border">#F8B7B7</color>
     <color name="recipe_default_background">#F8B7B7</color>
-    <color name="background_default">#6A1A1A</color>
+    <color name="background_default">#2b2e4a</color>
+
+    <color name="colorRedLight">#c16c6d</color>
+    <color name="colorRedAccentBright">#e84545</color>
+    <color name="colorRedAccentMedium">#903749</color>
+    <color name="colorRedAccentDark">#53354a</color>
+
+    <color name="colorPrimary">#272443</color>
+    <color name="colorPrimaryDark">#1F1D35</color>
+    <color name="colorAccent">#CFCFCF</color>
+    <color name="colorSecondary">#2D2E40</color>
+    <color name="colorSurface">#2C2C2C</color>
+    <color name="colorOnSurface">#232323</color>
+    <color name="colorOnBackground">#2b2e4a</color>
+
+    <color name="editTextTextColor">#959595</color>
+    <color name="editTextHintColor">#6E6E6E</color>
 </resources>

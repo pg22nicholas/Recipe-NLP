@@ -32,7 +32,6 @@ class TextClassificationClient(private val context: Context) {
             results.add(Result("" + i, category.label, category.score))
         }
         Collections.sort(results)
-        Toast.makeText(context, results.toString(), Toast.LENGTH_LONG).show()
         return results
     }
 
