@@ -48,7 +48,7 @@ class RecipeAdapter(val listener : RecipeClickListener) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
 
-        val recipe = Data.recipeList[position]
+        val recipe = Data.recipeDisplayList[position]
 
         val flexboxLayoutManager = FlexboxLayoutManager(context)
         holder.recipeCategoryList?.layoutManager = flexboxLayoutManager
@@ -67,6 +67,6 @@ class RecipeAdapter(val listener : RecipeClickListener) : RecyclerView.Adapter<R
     }
 
     override fun getItemCount(): Int {
-        return Data.recipeList.count()
+        return Data.recipeDisplayList.count()
     }
 }

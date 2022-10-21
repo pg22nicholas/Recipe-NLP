@@ -8,10 +8,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.AttributeSet
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -28,15 +33,15 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
     lateinit var model : TextClassificationClient
     lateinit var recipeAdapter : RecipeAdapter
     lateinit var recipeRV : RecyclerView;
-    lateinit var AddRecipeFab : FloatingActionButton
+    lateinit var toolbar : androidx.appcompat.widget.Toolbar
+
+    var isFiltered = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Data.initiateData(application)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "NLP Recipe App"
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
@@ -57,6 +62,40 @@ class MainActivity : AppCompatActivity(), RecipeClickListener {
         findViewById<FloatingActionButton>(R.id.add_recipe_fab).setOnClickListener {
             addRecipeDialog()
         }
+
+        toolbar = findViewById(R.id.mainActivityToolbar)
+        toolbar.menu.findItem(R.id.action_cancel).icon = ContextCompat.getDrawable(this, com.google.android.material.R.drawable.mtrl_ic_cancel)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.sort_alphabetical_ascending, R.id.sort_alphabetical_descending
+                -> menuClickSort(item)
+            R.id.action_cancel ->
+                resetFilter()
+            else -> menuClickFilter(item)
+        }
+        return true
+    }
+
+    private fun resetFilter() {
+        toolbar.menu.findItem(R.id.action_filter).setVisible(true)
+        toolbar.menu.findItem(R.id.action_cancel).setVisible(false)
+        Data.resetRecipeDisplayList()
+        recipeAdapter.notifyDataSetChanged()
+    }
+
+    private fun menuClickSort(item: MenuItem) {
+        // TODO:
+    }
+
+    private fun menuClickFilter(item: MenuItem) {
+        val FilterName = item.title.toString()
+        Data.recipeDisplayList = Data.recipeDisplayList.filter { it.containsCategory(FilterName) } as MutableList<Recipe>
+        toolbar.menu.findItem(R.id.action_filter).setVisible(false)
+        toolbar.menu.findItem(R.id.action_cancel).setVisible(true)
+        recipeAdapter.notifyDataSetChanged()
+
     }
 
     override fun OnGotoLinkClicked(recipeIndex : Int) {

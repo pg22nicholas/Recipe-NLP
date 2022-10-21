@@ -3,11 +3,17 @@ package com.vfs.recipenlpapp.models
 import android.content.Context
 import com.vfs.recipenlpapp.Result
 import com.vfs.recipenlpapp.TextClassificationClient
+import org.apache.xpath.operations.Bool
 
 class Recipe(var title : String, var link : String, var ingredientList : MutableList<Ingredient> = mutableListOf()) {
 
     val ModelsArray : List<String> = mutableListOf("FoodTimeModel", "CuisineModel");
     var categoryList : MutableList<Result> = mutableListOf()
+    var ID : Int = 0;
+
+    init {
+        ID = Data.getNewRecipeID()
+    }
 
     fun AddIngredient(IngredientToAdd : Ingredient) {
         ingredientList.add(IngredientToAdd)
@@ -28,8 +34,13 @@ class Recipe(var title : String, var link : String, var ingredientList : Mutable
                 categoryList.add(resultList[0])
             }
         }
-//        categoryList.add(Result("0", "Lunch", 90F))
-//        categoryList.add(Result("1", "Mexican", 85F))
+    }
+
+    fun containsCategory(category : String) : Boolean {
+        for (result in categoryList) {
+            if (result.title == category) return true
+        }
+        return false
     }
 
     // Convert the list of ingredients to a single string for NLP processing

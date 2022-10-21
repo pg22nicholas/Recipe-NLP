@@ -2,9 +2,111 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.vfs.recipenlpapp.views.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_sort"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/action_sort"
+        android:visible="false"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/sort_alphabetical_ascending"
+                android:title="Ascending"
+                android:onClick="onOptionsItemSelected"/>
+            <item
+                android:id="@+id/sort_alphabetical_descending"
+                android:title="Descending"
+                android:onClick="onOptionsItemSelected"/>
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/action_filter"
+        android:orderInCategory="100"
+        android:title="@string/action_filter"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/filter_cuisine"
+                android:title="Cuisine">
+                <menu>
+                    <item
+                        android:id="@+id/filter_cuisine_NA"
+                        android:title="North American"
+                        android:onClick="onOptionsItemSelected" />
+                    <item
+                        android:id="@+id/filter_cuisine_SA"
+                        android:title="South American"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_CA"
+                        android:title="Central American"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_Caribbean"
+                        android:title="Caribbean"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_African"
+                        android:title="African"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_Asian"
+                        android:title="Asian"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_Europe"
+                        android:title="European"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_cuisine_MiddleEastern"
+                        android:title="Middle Eastern"
+                        android:onClick="onOptionsItemSelected"/>
+                </menu>
+            </item>
+            <item
+                android:id="@+id/filter_time"
+                android:title="Time">
+
+                <menu>
+                    <item
+                        android:id="@+id/filter_time_breakfast"
+                        android:title="Breakfast"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_time_brunch"
+                        android:title="Brunch"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_time_lunch"
+                        android:title="Lunch"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_time_dinner"
+                        android:title="Dinner"
+                        android:onClick="onOptionsItemSelected"/>
+                    <item
+                        android:id="@+id/filter_time_dessert"
+                        android:title="Dessert"
+                        android:onClick="onOptionsItemSelected"/>
+                </menu>
+            </item>
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/action_cancel"
+        android:orderInCategory="100"
+        android:title="@string/action_filter"
+        app:showAsAction="always"
+        android:visible="false"
+        android:onClick="onOptionsItemSelected"/>
+
 </menu>
